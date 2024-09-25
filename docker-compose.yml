@@ -1,0 +1,23 @@
+services:
+  fastapi-streak:
+    build:
+      context: .
+    ports:
+      - "8002:8000"
+    volumes:
+      - .:/code  
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: password  
+      MYSQL_DATABASE: streak
+    ports:
+      - "3308:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql 
+
+volumes:
+  mysql-data:
