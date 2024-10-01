@@ -18,23 +18,34 @@ def get_db():
     finally:
         db.close()
         
-
-
-@streak.post('/api/create/', response_model= CreateExercise)
-def create_exercice(exercise : CreateExercise, db : Session = Depends(get_db)):
-    """funcion para crear un nuevo ejercicio"""
+@streak.post('/api/create/', response_model=CreateExercise)
+def create_exercice(exercise: CreateExercise, db: Session = Depends(get_db)):
+    """Función para crear un nuevo ejercicio"""
+    # Crear el nuevo ejercicio
     new_exercise = Exercise(
-        nombre = exercise.nombre,
-        problema = exercise.problema,
-        pista = exercise.pista,
-        dificultad = exercise.dificultad,
-        solucion = exercise.solucion)
+        nombre=exercise.nombre,
+        problema=exercise.problema,
+        pista=exercise.pista,
+        dificultad=exercise.dificultad
+    )
     
+    # Agregar los casos de prueba
+    for case in exercise.casos_de_prueba:
+        test_case = TestCase(
+            entrada=case.entrada,
+            salida_esperada=case.salida_esperada,
+            exercise=new_exercise  # Establecer la relación
+        )
+        new_exercise.casos_de_prueba.append(test_case)
+
     db.add(new_exercise)
     db.commit()
     db.refresh(new_exercise)
     
     return new_exercise
+
+
+
 
 @streak.get('/api/exercice/', response_model= List[CreateExercise])
 def get_exercice( db : Session = Depends(get_db)):
@@ -72,6 +83,8 @@ def get_history(token:str, db:Session=Depends(get_db)):
     id_user = verify_token(token=token)
     id_token = int(id_user['sub'])
     
+    print(f"el id del user es: {id_token}")
+    
     history = db.query(SolvedExercises).filter(SolvedExercises.usuario_id == id_token).all()
     if history is None:
         raise HTTPException(status_code=404 , detail="user is not found")
@@ -83,20 +96,20 @@ def get_history(token:str, db:Session=Depends(get_db)):
         
         
 
-@streak.post("/api/execute_code/")
-async def execute_code(code_submission: CodeSubmission):
-    try:
-        # Validar la sintaxis del código
-        ast.parse(code_submission.codigo)  # Lanzará un error si hay un problema de sintaxis
+# @streak.post("/api/execute_code/")
+# async def execute_code(code_submission: CodeSubmission):
+#     try:
+#         # Validar la sintaxis del código
+#         ast.parse(code_submission.codigo)  # Lanzará un error si hay un problema de sintaxis
 
-        # Ejecutar el código en un sandbox
-        result = run_code_in_sandbox(code_submission.codigo)
-        return result
+#         # Ejecutar el código en un sandbox
+#         result = run_code_in_sandbox(code_submission.codigo)
+#         return result
 
-    except SyntaxError as e:
-        raise HTTPException(status_code=400, detail="Error de sintaxis en el código.")
-    except Exception as e:
-        raise HTTPException(status_code=500, detail="Error al ejecutar el código.")
+#     except SyntaxError as e:
+#         raise HTTPException(status_code=400, detail="Error de sintaxis en el código.")
+#     except Exception as e:
+#         raise HTTPException(status_code=500, detail="Error al ejecutar el código.")
 
 
 

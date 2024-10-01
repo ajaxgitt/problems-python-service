@@ -35,16 +35,20 @@ class CreateHistory(BaseModel):
         orm_mode = True
         
 
+class TestCase(BaseModel):
+    entrada: str
+    salida_esperada: str
 
 class CreateExercise(BaseModel):
-    nombre : str
-    problema :str
-    pista : str
-    dificultad : int
-    solucion : str
-    
+    nombre: str
+    problema: str
+    pista: str
+    dificultad: int
+    casos_de_prueba: List[TestCase]  # Cambia aquí a casos_de_prueba
+
     class Config:
         orm_mode = True
+        
         
 class ExerciseResponse(BaseModel):
     id : int

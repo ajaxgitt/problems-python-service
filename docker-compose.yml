@@ -1,5 +1,5 @@
 services:
-  fastapi-streak:
+  fastapi-ProblemService:
     build:
       context: .
     ports:
