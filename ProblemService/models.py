@@ -20,8 +20,8 @@ class TestCase(Base):
     __tablename__ = "test_case"
 
     id = Column(Integer, primary_key=True)
-    entrada = Column(String) 
-    salida_esperada = Column(String)
+    entrada = Column(String(255)) 
+    salida_esperada = Column(String(255))
     exercise_id = Column(Integer, ForeignKey('exercise.id'))
 
     exercise = relationship("Exercise", back_populates="casos_de_prueba")
@@ -32,6 +32,7 @@ class Exercise(Base):
     __tablename__ = "exercise"
 
     id = Column(Integer, primary_key=True)
+    nombre_funcion = Column(String(255)) 
     nombre = Column(String(255), index=True)
     problema = Column(Text)
     pista = Column(String(255), index=True)

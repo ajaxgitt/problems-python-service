@@ -1,5 +1,5 @@
 services:
-  fastapi-ProblemService:
+  fastapi-problem_service:
     build:
       context: .
     ports:
