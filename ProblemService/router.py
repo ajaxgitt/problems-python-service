@@ -6,6 +6,7 @@ from fastapi import HTTPException, Depends
 from .models import Exercise , SolvedExercises , TestCase
 from .services import *
 
+import httpx
 
 
 streak = APIRouter()
@@ -16,6 +17,14 @@ def get_db():
         yield db
     finally:
         db.close()
+        
+        
+        
+
+
+
+
+
         
 @streak.post('/api/create/', response_model=CreateExercise ,tags=['crear'])
 def create_exercice(exercise: CreateExercise, db: Session = Depends(get_db)):
@@ -49,7 +58,6 @@ def create_exercice(exercise: CreateExercise, db: Session = Depends(get_db)):
 @streak.post('/api/createhistory/{token}',tags=['crear'])
 def create_history(token:str, history: CreateHistory ,db:Session=Depends(get_db)):
     """funcion para crear un historial para el user y marcar todos los ejercicos resuletos """
-    
     
     id_user = verify_token(token=token)
     id_token = int(id_user['sub'])
