@@ -55,6 +55,19 @@ class CreateExercise(BaseModel):
     class Config:
         orm_mode = True
         
+
+
+        
+class CreateExercise_Senior(BaseModel):
+    nombre: str
+    nombre_funcion:str
+    problema: str
+    dificultad: int
+    casos_de_prueba: List[TestCaseShema]  
+
+    class Config:
+        orm_mode = True
+        
         
         
 
@@ -67,6 +80,17 @@ class ExerciseResponse(BaseModel):
     dificultad : int
     casos_de_prueba : List[TestCaseShema]
     pista : str
+    
+    class Config:
+        orm_mode = True
+        
+class ExerciseResponse_Senior(BaseModel):
+    id : int
+    nombre_funcion:str
+    nombre : str
+    problema :str
+    dificultad : int
+    casos_de_prueba : List[TestCaseShema]
     
     class Config:
         orm_mode = True

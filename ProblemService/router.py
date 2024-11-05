@@ -3,10 +3,9 @@ from . database import SessionLocal
 from .schemas import *
 from sqlalchemy.orm import Session
 from fastapi import HTTPException, Depends
-from .models import Exercise , SolvedExercises , TestCase
+from .models import Exercise , SolvedExercises , TestCase,Exercise_Senior,TestCase_Senior
 from .services import *
 
-import httpx
 
 
 streak = APIRouter()
@@ -195,5 +194,44 @@ def get_top( db:Session=Depends(get_db)):
     
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+
+
+
+@streak.post('/api/create_exercice/', response_model=CreateExercise_Senior, tags=['exercice_senior'])
+def create_exercice_senior(exercise: CreateExercise_Senior, db: Session = Depends(get_db)):
+    """Función para crear un nuevo ejercicio"""
+    # Crear el nuevo ejercicio
+    new_exercise = Exercise_Senior(
+        nombre=exercise.nombre,
+        nombre_funcion=exercise.nombre_funcion,
+        problema=exercise.problema,
+        dificultad=exercise.dificultad
+    )
+    
+    # Agregar los casos de prueba
+    for case in exercise.casos_de_prueba:
+        test_case = TestCase_Senior(
+            entrada=case.entrada,
+            salida_esperada=case.salida_esperada,
+            exercise_id=new_exercise.id  
+        )
+        new_exercise.casos_de_prueba.append(test_case)
+
+    db.add(new_exercise)
+    db.commit()
+    db.refresh(new_exercise)
+    
+    return new_exercise
+
+
+
+
+@streak.get('/api/get_exercice_senior/', response_model=List[ExerciseResponse_Senior],tags=['exercice_senior'])
+def get_exercise(db : Session = Depends(get_db)):
+    """funcion para llamar a todos los ejercicios Senior"""
+    ejercicios = db.query(Exercise_Senior).all()
+    return ejercicios
 
 
