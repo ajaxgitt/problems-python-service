@@ -34,7 +34,8 @@ def create_exercice(exercise: CreateExercise, db: Session = Depends(get_db)):
         nombre_funcion = exercise.nombre_funcion,
         problema=exercise.problema,
         pista=exercise.pista,
-        dificultad=exercise.dificultad
+        dificultad=exercise.dificultad,
+        exp = exercise.exp
     )
     
     # Agregar los casos de prueba
@@ -42,7 +43,7 @@ def create_exercice(exercise: CreateExercise, db: Session = Depends(get_db)):
         test_case = TestCase(
             entrada=case.entrada,
             salida_esperada=case.salida_esperada,
-            exercise=new_exercise  # Establecer la relación
+            exercise=new_exercise  
         )
         new_exercise.casos_de_prueba.append(test_case)
 
@@ -62,7 +63,7 @@ def create_history(token:str, history: CreateHistory ,db:Session=Depends(get_db)
     id_token = int(id_user['sub'])
     
     new_fistory = SolvedExercises(
-         usuario_id = id_token,
+        usuario_id = id_token,
         exercise_id = history.exercise_id,
         resultado = True
         
@@ -102,7 +103,8 @@ def get_exercice_id(id:int,db:Session= Depends(get_db)):
         problema=ejercicio_db.problema,
         dificultad=ejercicio_db.dificultad,
         casos_de_prueba=[TestCaseShema(entrada=caso.entrada, salida_esperada=caso.salida_esperada) for caso in ejercicio_db.casos_de_prueba],
-        pista=ejercicio_db.pista
+        pista=ejercicio_db.pista,
+        exp=ejercicio_db.exp
     )
 
     

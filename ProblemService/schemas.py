@@ -50,6 +50,7 @@ class CreateExercise(BaseModel):
     problema: str
     pista: str
     dificultad: int
+    exp:int
     casos_de_prueba: List[TestCaseShema]  
 
     class Config:
@@ -80,6 +81,7 @@ class ExerciseResponse(BaseModel):
     dificultad : int
     casos_de_prueba : List[TestCaseShema]
     pista : str
+    exp:int
     
     class Config:
         orm_mode = True

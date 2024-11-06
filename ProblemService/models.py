@@ -38,6 +38,8 @@ class Exercise(Base):
     problema = Column(Text)
     pista = Column(String(255), index=True)
     dificultad = Column(Integer, nullable=False)  
+    exp = Column(Integer, nullable=False)  
+     
     
     
     casos_de_prueba = relationship("TestCase", back_populates="exercise", cascade="all, delete-orphan")
