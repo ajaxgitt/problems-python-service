@@ -1,6 +1,10 @@
+# Ignorar entornos virtuales y archivos de caché de Python
 venv/
 __pycache__/
 
 *.venv
 *.venv.*
 venv.*
+
+# Asegúrate de no ignorar el directorio 'problemService'
+!problemService/
