@@ -3,8 +3,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from decouple import config
 
-
-SQLALCHEMY_DATABASE_URL = "mysql+mysqldb://root:password@mysql:3306/streak"
+#mysql://root:MUWdNiheHYKPvQmAZBKxjHNnOVdAjgFh@junction.proxy.rlwy.net:42044/railway
+SQLALCHEMY_DATABASE_URL = "mysql://root:MUWdNiheHYKPvQmAZBKxjHNnOVdAjgFh@junction.proxy.rlwy.net:42044/railway"
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 

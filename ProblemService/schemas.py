@@ -1,6 +1,6 @@
 
 from pydantic import BaseModel
-from typing import List
+from typing import List ,Optional
 from datetime import datetime
 
 
@@ -82,6 +82,7 @@ class ExerciseResponse(BaseModel):
     casos_de_prueba : List[TestCaseShema]
     pista : str
     exp:int
+    
     
     class Config:
         orm_mode = True

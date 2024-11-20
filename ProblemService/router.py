@@ -104,7 +104,7 @@ def get_exercice_id(id:int,db:Session= Depends(get_db)):
         dificultad=ejercicio_db.dificultad,
         casos_de_prueba=[TestCaseShema(entrada=caso.entrada, salida_esperada=caso.salida_esperada) for caso in ejercicio_db.casos_de_prueba],
         pista=ejercicio_db.pista,
-        exp=ejercicio_db.exp
+        exp=ejercicio_db.exp,
     )
 
     
