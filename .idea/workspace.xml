@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c86160d8-ee15-4e2b-a1fa-7932304a1e90" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2d4dcd25-cf31-4797-9964-5ee9d9454487.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/2d4dcd25-cf31-4797-9964-5ee9d9454487.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProblemService/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProblemService/database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProblemService/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProblemService/router.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProblemService/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProblemService/schemas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-    </list>
+    <list default="true" id="c86160d8-ee15-4e2b-a1fa-7932304a1e90" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
